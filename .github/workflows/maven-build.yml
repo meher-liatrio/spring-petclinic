@@ -28,5 +28,7 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: Build with Maven Wrapper
-        run: ./mvnw -deploy
+        run: |
+              cat settings.xml > ~/.m2/settings.xml
+              ./mvnw deploy
       
