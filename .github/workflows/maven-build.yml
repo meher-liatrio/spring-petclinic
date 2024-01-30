@@ -28,8 +28,15 @@ jobs:
           distribution: 'adopt'
           cache: maven
       - name: Build with Maven Wrapper
-        run: ./mvnw -B package > build.txt
-      - uses: actions/upload-artifact@v4
+        run: ./mvnw -B package --file pom.xml
+      - name: Nexus Repo Publish
+        uses: sonatype-nexus-community/nexus-repo-github-action@master
         with:
-          name: build-artifact
-          path: build.txt
+          serverUrl: http://192.168.92.180:8081/repository/maven-releases/
+          username: admin
+          password: ${{ secrets.NEXUS }}
+          format: maven2
+          repository: maven-releases
+          coordinates: groupId=org.sonatype.plugins artifactId=nxrm3-maven-plugin version=nxrm3-maven-plugin
+          assets: extension=jar
+          filename: ./target/app-1.0.0.jar
