@@ -1,0 +1,5 @@
+<server>
+    <id>maven-releases</id>
+    <username>admin</username>
+    <password>${env.NEXUS}</password>
+</server>

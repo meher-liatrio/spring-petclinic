@@ -12,6 +12,15 @@
   </parent>
   <name>petclinic</name>
 
+  <distributionManagement>
+    <repository>
+        <id>maven-releases</id>
+        <name>maven-releases</name>
+        <url>http://192.168.92.180:8081/repository/maven-releases/</url>
+    </repository>
+  </distributionManagement>
+
+
   <properties>
 
     <!-- Generic properties -->
@@ -291,7 +300,6 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
-
   <profiles>
     <profile>
       <id>css</id>
