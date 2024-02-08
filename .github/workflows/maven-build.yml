@@ -30,4 +30,5 @@ jobs:
         run: |
               cat settings.xml > ~/.m2/settings.xml
               ./mvnw deploy
+        env: ${{secrets.NEXUS2}}
       
