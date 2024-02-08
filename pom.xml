@@ -22,7 +22,7 @@
         <snapshotRepository>
             <id>snapshot-repo</id>
             <name>Internal Snapshot Repository</name>
-            <url>http://192.168.92.180:8081/repository/maven-snapshots/</url>
+            <url>http://http://localhost:8081/repository/maven-snapshots//</url>
         </snapshotRepository>
     </distributionManagement>
 
