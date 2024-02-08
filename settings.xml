@@ -10,7 +10,7 @@
     <server>
     <id>snapshot-repo</id>
     <username>admin</username>
-    <password>${NEXUS2}</password>
+    <password>${env.NEXUS2}</password>
 </server>
 
   </servers>
