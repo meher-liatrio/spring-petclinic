@@ -22,7 +22,7 @@
         <snapshotRepository>
             <id>snapshot-repo</id>
             <name>Internal Snapshot Repository</name>
-            <url>http://nexus-service.bootcamp.svc.cluster.local:8081</url>
+            <url>http://nexus-service.bootcamp.svc.cluster.local:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
