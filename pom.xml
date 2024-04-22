@@ -277,7 +277,7 @@
     <repository>
       <id>maven-releases</id>
       <name>maven releases</name>
-      <url>http://host.docker.internal:8081/repository/maven-releases/</url>
+      <url>${env.DISTRIBUTION_URL}/repository/maven-releases/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
