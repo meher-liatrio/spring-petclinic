@@ -1,6 +1,8 @@
 name: Build and Deploy to Nexus
 
-on: [push]
+on:
+    repository_dispatch:
+        types: [dispatch-event]
 
 jobs:
     build_and_deploy:
@@ -13,6 +15,11 @@ jobs:
                 java-version: '17'
                 distribution: 'adopt'
                 cache: maven
+            - name: Bump version in pom.xml
+              run: |
+                   VERSION=$(grep "<version>" pom.xml | head -1 | sed -e 's/<version>\(.*\)<\/version>/\1/')
+                   NEW_VERSION=$(echo $VERSION | awk -F. -v OFS=. '{$NF++;print}')
+                   sed -i "s/<version>$VERSION<\/version>/<version>$NEW_VERSION<\/version>/" pom.xml
             - name: Build with Maven and Deploy
               run: mvn deploy --settings settings.xml
               env:
