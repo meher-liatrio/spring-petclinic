@@ -15,11 +15,12 @@ jobs:
                 java-version: '17'
                 distribution: 'adopt'
                 cache: maven
-            - name: Bump version in pom.xml
-              run: |
-                   VERSION=$(grep "<version>" pom.xml | head -1 | sed -e 's/<version>\(.*\)<\/version>/\1/')
-                   NEW_VERSION=$(echo $VERSION | awk -F. -v OFS=. '{$NF++;print}')
-                   sed -i "s/<version>$VERSION<\/version>/<version>$NEW_VERSION<\/version>/" pom.xml
+            - name: Update joda-time version
+              run: mvn versions:set-property -Dproperty=JODAVERSION -DnewVersion=${{ github.event.client_payload.VERSION }}
+            
+            - name: update spring-petclinic version
+              run: mvn versions:set-property -Dproperty=SPRINGVERSION -DnewVersion=${{ github.event.client_payload.VERSION }}
+            
             - name: Build with Maven and Deploy
               run: mvn deploy --settings settings.xml
               env:
