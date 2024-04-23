@@ -135,7 +135,7 @@
     <dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
-      <version>${JODAVERSION}</version>
+      <version>${env.JODAVERSION}</version>
     </dependency>
   </dependencies>
 
