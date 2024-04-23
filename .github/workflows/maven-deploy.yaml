@@ -15,20 +15,20 @@ jobs:
                 java-version: '17'
                 distribution: 'adopt'
                 cache: maven
-            - name: Update joda-time version
-              run: mvn versions:set-property -Dproperty=JODAVERSION -DnewVersion=${{ github.event.client_payload.JODA_VERSION }}
+            # - name: Update joda-time version
+            #   run: mvn versions:set-property -Dproperty=JODAVERSION -DnewVersion=${{ github.event.client_payload.JODA_VERSION }}
             
-            - name: get spring-petclinic version
-              run: echo "SPRINGVERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+            # - name: get spring-petclinic version
+            #   run: echo "SPRINGVERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
             
-            - name: Increment version
-              run: |
-                IFS='.' read -ra VERSION_PARTS <<< "${{ env.SPRINGVERSION }}"
-                ((VERSION_PARTS[2]++))
-                NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.${VERSION_PARTS[2]}"
-                echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-            - name: update spring-petclinic version
-              run: mvn versions:set-property -Dproperty=SPRINGVERSION -DnewVersion=${{ env.NEW_VERSION }}
+            # - name: Increment version
+            #   run: |
+            #     IFS='.' read -ra VERSION_PARTS <<< "${{ env.SPRINGVERSION }}"
+            #     ((VERSION_PARTS[2]++))
+            #     NEW_VERSION="${VERSION_PARTS[0]}.${VERSION_PARTS[1]}.${VERSION_PARTS[2]}"
+            #     echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+            # - name: update spring-petclinic version
+            #   run: mvn versions:set-property -Dproperty=SPRINGVERSION -DnewVersion=${{ env.NEW_VERSION }}
             
             - name: Build with Maven and Deploy
               run: mvn deploy --settings settings.xml
