@@ -16,7 +16,7 @@ jobs:
                 distribution: 'adopt'
                 cache: maven
             - name: Update joda-time version
-              run: mvn versions:set-property -Dproperty=JODAVERSION -DnewVersion=${{ github.event.client_payload.VERSION }}
+              run: mvn versions:set-property -Dproperty=JODAVERSION -DnewVersion=${{ github.event.client_payload.JODA_VERSION }}
             
             - name: get spring-petclinic version
               run: echo "SPRINGVERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
